@@ -31,9 +31,11 @@ export function Navigation() {
     <header
       className={cn(
         "fixed top-0 inset-x-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-paper/80 backdrop-blur-md border-b border-ink/10"
-          : "bg-transparent",
+        open
+          ? "bg-paper border-b border-ink/10"
+          : scrolled
+            ? "bg-paper/80 backdrop-blur-md border-b border-ink/10"
+            : "bg-transparent",
       )}
     >
       <div
@@ -130,7 +132,7 @@ export function Navigation() {
           open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
         )}
       >
-        <nav className="flex flex-col p-6 gap-1">
+        <nav className="flex flex-col items-center text-center p-6 gap-1">
           <Image
             src="/loghi/logo-full.png"
             alt="A.S.D. Laurenziana Model Team Firenze"
@@ -138,17 +140,29 @@ export function Navigation() {
             height={294}
             className="w-3/4 max-w-xs h-auto mb-6"
           />
-          {site.nav.map((item, i) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="text-display text-4xl py-2 border-b border-ink/10 hover:text-viola transition-colors"
-              style={{ transitionDelay: `${i * 30}ms` }}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {site.nav.map((item, i) => {
+            const isCal = item.href === "/calendario";
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className={cn(
+                  "w-full py-2 border-b border-ink/10 text-display text-4xl transition-colors flex items-center justify-center gap-3",
+                  isCal ? "text-viola" : "hover:text-viola",
+                )}
+                style={{ transitionDelay: `${i * 30}ms` }}
+              >
+                {isCal && (
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="ping-soft absolute inline-flex h-full w-full rounded-full bg-kerb" />
+                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-kerb" />
+                  </span>
+                )}
+                {item.label}
+              </Link>
+            );
+          })}
           <a
             href={site.social.myrcm}
             target="_blank"

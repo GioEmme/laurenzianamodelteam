@@ -154,8 +154,8 @@ export default function Home() {
           <Reveal>
             <div className="relative aspect-[16/10] overflow-hidden hairline-dark">
               <Image
-                src="/pista/pista-aerea-01.jpeg"
-                alt="Vista aerea della pista permanente di Firenze"
+                src="/pista/pista-aerea-sketch.png"
+                alt="Schizzo della pista permanente di Firenze vista dall'alto"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -177,9 +177,9 @@ export default function Home() {
             </Reveal>
             <Reveal delay={0.1}>
               <p className="text-paper/60 mt-6 leading-relaxed max-w-lg">
-                Asfalto, con il palco di pilotaggio al centro. La pista viene
-                ridisegnata a ogni prova del campionato: cinque tracciati
-                diversi nel corso della stagione.
+                Non un tracciato fisso, ma uno spazio che si ridisegna a ogni
+                prova: lo stesso asfalto ospita percorsi sempre diversi, da
+                leggere e interpretare gara dopo gara.
               </p>
             </Reveal>
             <Reveal delay={0.15}>
@@ -187,7 +187,7 @@ export default function Home() {
                 href="/circuito"
                 className="mt-8 inline-block text-label bg-paper text-asphalt px-6 py-4 hover:bg-viola hover:text-paper transition-colors"
               >
-                Tutti i tracciati →
+                Scopri il circuito →
               </Link>
             </Reveal>
           </div>
