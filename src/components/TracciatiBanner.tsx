@@ -35,7 +35,7 @@ export function TracciatiBanner() {
               {/* miniatura */}
               <span className="relative block h-16 sm:h-[72px] w-[132px] sm:w-[150px] overflow-hidden rounded-[3px] ring-1 ring-paper/20 shadow-lg transition-all duration-300 group-hover/thumb:ring-gold-bright/80 group-hover/thumb:-translate-y-0.5">
                 <Image
-                  src={`/tracciati/tracciato-${n}.jpeg`}
+                  src={`/tracciati/tracciato-${n}.png`}
                   alt={`Tracciato ${n}`}
                   fill
                   className="object-cover"
@@ -50,7 +50,7 @@ export function TracciatiBanner() {
               <span className="pointer-events-none absolute bottom-[calc(100%+18px)] left-1/2 -translate-x-1/2 w-[min(80vw,560px)] origin-bottom scale-90 opacity-0 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/thumb:scale-100 group-hover/thumb:opacity-100">
                 <span className="block relative aspect-[410/195] rounded-md overflow-hidden ring-1 ring-gold-bright/50 shadow-[0_30px_80px_-15px_rgba(0,0,0,0.85)]">
                   <Image
-                    src={`/tracciati/tracciato-${n}.jpeg`}
+                    src={`/tracciati/tracciato-${n}.png`}
                     alt={`Tracciato ${n} — planimetria`}
                     fill
                     className="object-cover"

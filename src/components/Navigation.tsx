@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/cn";
-import { GiglioMark } from "./GiglioMark";
 
 export function Navigation() {
   const [open, setOpen] = useState(false);
@@ -13,7 +13,8 @@ export function Navigation() {
   const pathname = usePathname();
   // Solo la home ha l'hero scuro a tutto schermo: lì (e non scrollati)
   // la topbar va chiara. Altrove lo sfondo in alto è chiaro → testo scuro.
-  const light = pathname === "/" && !scrolled;
+  // Col menu mobile aperto lo sfondo dietro è chiaro → forza stato scuro.
+  const light = pathname === "/" && !scrolled && !open;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -37,54 +38,65 @@ export function Navigation() {
     >
       <div
         className={cn(
-          "mx-auto max-w-[1400px] px-4 sm:px-6 h-16 flex items-center justify-between",
+          "mx-auto max-w-[1400px] px-4 sm:px-6 h-[72px] flex items-center justify-between",
           light && "drop-shadow-[0_1px_10px_rgba(0,0,0,0.45)]",
         )}
       >
-        <Link href="/" className="flex items-center gap-3 group" onClick={() => setOpen(false)}>
-          <GiglioMark
-            className={cn(
-              "h-7 w-auto transition-colors group-hover:text-kerb",
-              light ? "text-gold-bright" : "text-viola",
-            )}
+        <Link
+          href="/"
+          className="flex items-center group"
+          onClick={() => setOpen(false)}
+          aria-label="A.S.D. Laurenziana Model Team — home"
+        >
+          <Image
+            src={light ? "/loghi/scudo-light.png" : "/loghi/scudo.png"}
+            alt="A.S.D. Laurenziana Model Team"
+            width={120}
+            height={60}
+            priority
+            className="h-[58px] sm:h-[66px] w-auto transition-opacity group-hover:opacity-80"
           />
-          <div className="leading-none hidden sm:block">
-            <div
-              className={cn(
-                "text-display text-base tracking-tight",
-                light ? "text-paper" : "text-ink",
-              )}
-            >
-              A.S.D. LAURENZIANA
-            </div>
-            <div
-              className={cn(
-                "text-label text-[0.6rem] mt-0.5",
-                light ? "text-paper/70" : "text-ink-dim",
-              )}
-            >
-              Model Team · Firenze
-            </div>
-          </div>
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">
-          {site.nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "text-label px-3 py-2 transition-colors",
-                light
-                  ? "text-paper/85 hover:text-paper"
-                  : "text-ink-dim hover:text-ink",
-                item.href === "/calendario" &&
-                  "calendar-pulse relative px-4 hover:text-viola-bright",
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {site.nav.map((item) =>
+            item.href === "/calendario" ? (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-label relative ml-1 mr-1 inline-flex items-center gap-2 rounded-full bg-gold-bright px-4 py-2 text-asphalt shadow-[0_2px_14px_rgba(227,195,114,0.45)] hover:bg-gold transition-colors"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="ping-soft absolute inline-flex h-full w-full rounded-full bg-kerb" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-kerb" />
+                </span>
+                {item.label}
+              </Link>
+            ) : (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "text-label px-3 py-2 transition-colors",
+                  light
+                    ? "text-paper/85 hover:text-paper"
+                    : "text-ink-dim hover:text-ink",
+                )}
+              >
+                {item.label}
+              </Link>
+            ),
+          )}
+          {/* logo completo: targhetta chiara, leggibile anche sopra l'hero */}
+          <div className="hidden lg:flex items-center bg-paper rounded-md px-2 py-0.5 ml-2 shadow-[0_2px_10px_rgba(0,0,0,0.18)]">
+            <Image
+              src="/loghi/logo-full.png"
+              alt="A.S.D. Laurenziana Model Team Firenze"
+              width={220}
+              height={125}
+              className="h-[52px] w-auto"
+            />
+          </div>
           <a
             href={site.social.myrcm}
             target="_blank"
@@ -114,11 +126,18 @@ export function Navigation() {
       {/* mobile fullscreen */}
       <div
         className={cn(
-          "md:hidden fixed inset-0 top-16 bg-paper blueprint transition-all duration-300",
+          "md:hidden fixed inset-0 top-[72px] bg-paper blueprint transition-all duration-300",
           open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
         )}
       >
         <nav className="flex flex-col p-6 gap-1">
+          <Image
+            src="/loghi/logo-full.png"
+            alt="A.S.D. Laurenziana Model Team Firenze"
+            width={520}
+            height={294}
+            className="w-3/4 max-w-xs h-auto mb-6"
+          />
           {site.nav.map((item, i) => (
             <Link
               key={item.href}
