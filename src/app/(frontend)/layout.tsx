@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Fraunces, Inter_Tight, IBM_Plex_Mono } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";

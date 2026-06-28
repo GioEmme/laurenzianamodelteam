@@ -4,6 +4,8 @@ import { Hero } from "@/components/sections/Hero";
 import { Reveal } from "@/components/Reveal";
 import { GiglioMark } from "@/components/GiglioMark";
 import { site, categories, calendar2026 } from "@/lib/site";
+import { getGallerySections } from "@/lib/gallery";
+import { LandingGalleryGrid } from "@/components/LandingGalleryGrid";
 
 // Ricalcolato a ogni rebuild/giorno (revalidate sotto): le prossime gare
 // rispetto alla data odierna.
@@ -17,8 +19,17 @@ function nextRaces(n: number) {
     .slice(0, n);
 }
 
-export default function Home() {
+function formatData(iso: string) {
+  return new Date(iso).toLocaleDateString("it-IT", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
+
+export default async function Home() {
   const upcoming = nextRaces(3);
+  const gallerySections = await getGallerySections(2);
 
   return (
     <>
@@ -26,10 +37,10 @@ export default function Home() {
 
       {/* MANIFESTO */}
       <section className="surface-viola text-paper py-24 sm:py-32 relative overflow-hidden">
-        <GiglioMark className="pointer-events-none absolute top-1/2 -translate-y-1/2 -right-[7%] h-[115%] w-auto text-paper/[0.06]" />
+        <GiglioMark className="pointer-events-none absolute top-1/2 -translate-y-1/2 -right-[7%] h-[115%] w-auto text-kerb/[0.06]" />
         <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6">
           <Reveal>
-            <div className="text-label text-viola-bright mb-8">
+            <div className="text-label eyebrow mb-8">
               ⚜ Chi siamo
             </div>
           </Reveal>
@@ -71,12 +82,12 @@ export default function Home() {
 
       {/* CATEGORIE */}
       <section className="blueprint py-24 sm:py-32 relative overflow-hidden">
-        <GiglioMark className="pointer-events-none absolute top-1/2 -translate-y-1/2 -left-[7%] h-[115%] w-auto text-viola/[0.06]" />
+        <GiglioMark className="pointer-events-none absolute top-1/2 -translate-y-1/2 -left-[7%] h-[115%] w-auto text-kerb/[0.06]" />
         <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6">
           <div className="flex items-end justify-between gap-6 flex-wrap mb-12">
             <div>
               <Reveal>
-                <div className="text-label text-viola mb-3">Categorie</div>
+                <div className="text-label eyebrow mb-3">Categorie</div>
               </Reveal>
               <Reveal delay={0.05}>
                 <h2 className="text-serif text-[clamp(2.4rem,6vw,4.2rem)]">
@@ -124,7 +135,7 @@ export default function Home() {
             {/* CTA card */}
             <Reveal delay={0.12}>
               <div className="bg-viola text-paper p-7 h-full flex flex-col justify-between">
-                <GiglioMark className="h-10 w-auto text-paper/80" />
+                <GiglioMark className="h-10 w-auto text-kerb" />
                 <div>
                   <h3 className="text-display text-2xl mt-6">
                     Vuoi provare?
@@ -149,7 +160,7 @@ export default function Home() {
 
       {/* CIRCUITO foto */}
       <section className="relative py-24 sm:py-32 surface-viola text-paper overflow-hidden">
-        <GiglioMark className="pointer-events-none absolute top-1/2 -translate-y-1/2 -right-[7%] h-[115%] w-auto text-paper/[0.06]" />
+        <GiglioMark className="pointer-events-none absolute top-1/2 -translate-y-1/2 -right-[7%] h-[115%] w-auto text-kerb/[0.06]" />
         <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 grid lg:grid-cols-2 gap-12 items-center">
           <Reveal>
             <div className="relative aspect-[16/10] overflow-hidden hairline-dark">
@@ -164,7 +175,7 @@ export default function Home() {
           </Reveal>
           <div>
             <Reveal>
-              <div className="text-label text-viola-bright mb-3">Il circuito</div>
+              <div className="text-label eyebrow mb-3">Il circuito</div>
             </Reveal>
             <Reveal delay={0.05}>
               <h2 className="text-serif text-[clamp(2rem,5vw,3.6rem)] leading-[1.02]">
@@ -196,12 +207,12 @@ export default function Home() {
 
       {/* CALENDARIO preview */}
       <section className="blueprint py-24 sm:py-32 relative overflow-hidden">
-        <GiglioMark className="pointer-events-none absolute top-1/2 -translate-y-1/2 -left-[7%] h-[115%] w-auto text-viola/[0.06]" />
+        <GiglioMark className="pointer-events-none absolute top-1/2 -translate-y-1/2 -left-[7%] h-[115%] w-auto text-kerb/[0.06]" />
         <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6">
           <div className="flex items-end justify-between gap-6 flex-wrap mb-12">
             <div>
               <Reveal>
-                <div className="text-label text-viola mb-3">Prossime gare</div>
+                <div className="text-label eyebrow mb-3">Prossime gare</div>
               </Reveal>
               <Reveal delay={0.05}>
                 <h2 className="text-serif text-[clamp(2.4rem,6vw,4.2rem)]">
@@ -240,9 +251,60 @@ export default function Home() {
         </div>
       </section>
 
+      {/* GALLERY — ultime raccolte */}
+      {gallerySections.length > 0 && (
+        <section className="blueprint-dark text-paper py-24 sm:py-32 relative overflow-hidden">
+          <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6">
+            <div className="flex items-end justify-between gap-6 flex-wrap mb-12">
+              <div>
+                <Reveal>
+                  <div className="text-label eyebrow mb-3">Gallery</div>
+                </Reveal>
+                <Reveal delay={0.05}>
+                  <h2 className="text-serif text-[clamp(2.4rem,6vw,4.2rem)]">
+                    Ultime raccolte
+                  </h2>
+                </Reveal>
+              </div>
+              <Reveal delay={0.1}>
+                <Link
+                  href="/gallery"
+                  className="text-label hairline-dark px-5 py-3 hover:bg-paper/10 transition-colors"
+                >
+                  Gallery completa →
+                </Link>
+              </Reveal>
+            </div>
+
+            <div className="space-y-12">
+              {gallerySections.map(
+                (s) =>
+                  s.media.length > 0 && (
+                    <Reveal key={s.id}>
+                      <div>
+                        <div className="flex items-baseline justify-between gap-4 flex-wrap mb-5">
+                          <Link href={`/gallery#${s.id}`} className="group">
+                            <h3 className="text-display text-2xl sm:text-3xl group-hover:text-gold-bright transition-colors">
+                              {s.title}
+                            </h3>
+                          </Link>
+                          <span className="text-label text-paper/50">
+                            {formatData(s.date)}
+                          </span>
+                        </div>
+                        <LandingGalleryGrid media={s.media} sectionId={s.id} />
+                      </div>
+                    </Reveal>
+                  ),
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* CTA finale */}
       <section className="relative surface-viola text-paper py-28 sm:py-36 overflow-hidden">
-        <GiglioMark className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 h-[120%] w-auto text-paper/[0.06]" />
+        <GiglioMark className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 h-[120%] w-auto text-kerb/[0.06]" />
         <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6 text-center">
           <Reveal>
             <h2 className="text-serif text-[clamp(2.6rem,8vw,6rem)] leading-[0.98]">

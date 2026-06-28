@@ -10,7 +10,7 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-3">
-              <GiglioMark className="h-9 w-auto text-viola-bright" />
+              <GiglioMark className="h-9 w-auto text-kerb" />
               <div className="leading-none">
                 <div className="text-display text-xl">A.S.D. LAURENZIANA</div>
                 <div className="text-label text-paper/50 text-[0.6rem] mt-1">
@@ -26,7 +26,7 @@ export function Footer() {
           </div>
 
           <div>
-            <div className="text-label text-viola-bright mb-4">Naviga</div>
+            <div className="text-label eyebrow mb-4">Naviga</div>
             <ul className="space-y-2.5">
               {site.nav.map((item) => (
                 <li key={item.href}>
@@ -42,7 +42,7 @@ export function Footer() {
           </div>
 
           <div>
-            <div className="text-label text-viola-bright mb-4">Dove / Contatti</div>
+            <div className="text-label eyebrow mb-4">Dove / Contatti</div>
             <address className="not-italic text-paper/70 text-sm space-y-1.5 leading-relaxed">
               <div>{site.address.street}</div>
               <div>

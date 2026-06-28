@@ -1,6 +1,6 @@
 // Giglio di Firenze — tracciato preciso da public/loghi/giglio_originale.png
 // GENERATO da scripts/build-giglio.mjs — non modificare a mano il path.
-// currentColor o gradiente viola→oro tramite prop `gradient`.
+// currentColor o gradiente rosso→oro tramite prop `gradient`.
 let gid = 0;
 
 const GIGLIO_PATH =
@@ -19,8 +19,8 @@ export function GiglioMark({
       {gradient && (
         <defs>
           <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="var(--color-viola)" />
-            <stop offset="55%" stopColor="var(--color-viola-bright)" />
+            <stop offset="0%" stopColor="var(--color-kerb)" />
+            <stop offset="65%" stopColor="var(--color-kerb-bright)" />
             <stop offset="100%" stopColor="var(--color-gold-bright)" />
           </linearGradient>
         </defs>

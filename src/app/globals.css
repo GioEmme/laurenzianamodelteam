@@ -5,22 +5,26 @@
   --color-paper: #ecebe4;        /* base: pietra pallida fiorentina */
   --color-paper-soft: #e3e2da;
   --color-paper-line: #d2d1c6;   /* griglia blueprint */
-  --color-asphalt: #16181c;      /* asfalto / inchiostro */
-  --color-asphalt-soft: #21242a;
-  --color-asphalt-line: #34383f;
+  /* superfici scure: blu sociale profondo (non nero) */
+  --color-asphalt: #16305f;      /* card / pannelli scuri */
+  --color-asphalt-soft: #1d3c72;
+  --color-asphalt-line: #335089;
 
   --color-ink: #16181c;
   --color-ink-dim: #5a5d63;
   --color-ink-faint: #8d8f8a;
 
   /* --- accenti --- */
-  --color-viola: #5b2b83;        /* viola Firenze */
-  --color-viola-bright: #8a44c4;
-  --color-viola-deep: #3c1a5b;
+  /* blu royal / azzurro sociale (magliette del team) */
+  --color-viola: #1c43c9;        /* blu Laurenziana */
+  --color-viola-bright: #3f74f0;
+  --color-viola-deep: #102a7a;
+  --color-viola-soft: #7aa2ff;   /* azzurro chiaro: accenti su fondo scuro */
   --color-gold: #b8893b;         /* oro rinascimentale */
   --color-gold-bright: #e3c372;
-  --color-track: #5b2b83;        /* cordoli pista = viola */
+  --color-track: #1c43c9;        /* cordoli pista = blu */
   --color-kerb: #c0392f;         /* rosso giglio */
+  --color-kerb-bright: #ff2419;  /* rosso giglio squillante (leggibile su scuro) */
 
   --font-display: var(--font-bricolage), "Arial Black", sans-serif;
   --font-serif: var(--font-fraunces), Georgia, "Times New Roman", serif;
@@ -129,27 +133,39 @@ html.lenis body {
   letter-spacing: 0.22em;
   font-size: 0.7rem;
 }
+/* eyebrow / titoletto unico: blu sociale + semibold, da abbinare a .text-label.
+   Stesso elemento ovunque; sul fondo scuro passa ad azzurro chiaro per risaltare. */
+.eyebrow {
+  font-weight: 600;
+  color: var(--color-viola);
+}
+.surface-viola .eyebrow,
+.blueprint-dark .eyebrow {
+  color: var(--color-viola-soft);
+}
 
 /* ---------------- superfici: pietra / travertino ---------------- */
-/* chiaro: travertino caldo con velature viola+oro, niente griglia */
+/* chiaro: travertino caldo con velature blu+oro, niente griglia */
 .blueprint {
   background-color: var(--color-paper);
   background-image:
-    radial-gradient(ellipse 90% 60% at 12% -10%, rgba(91, 43, 131, 0.05), transparent 60%),
+    radial-gradient(ellipse 90% 60% at 12% -10%, rgba(28, 67, 201, 0.05), transparent 60%),
     radial-gradient(ellipse 70% 50% at 105% 110%, rgba(184, 137, 59, 0.07), transparent 55%);
 }
-/* scuro: pietra serena profonda, alone viola e bagliore oro */
+/* scuro: blu sociale profondo, gradiente diagonale + glow royal e tocco oro */
 .blueprint-dark {
-  background-color: #15131a;
+  background-color: #0d2150;
   background-image:
-    radial-gradient(ellipse 80% 70% at 25% -10%, rgba(91, 43, 131, 0.28), transparent 55%),
-    radial-gradient(ellipse 60% 60% at 110% 115%, rgba(184, 137, 59, 0.1), transparent 50%);
+    radial-gradient(ellipse 90% 75% at 16% -12%, rgba(63, 116, 240, 0.42), transparent 60%),
+    radial-gradient(ellipse 78% 65% at 116% 6%, rgba(28, 67, 201, 0.38), transparent 55%),
+    radial-gradient(ellipse 60% 60% at 108% 118%, rgba(227, 195, 114, 0.09), transparent 50%),
+    linear-gradient(155deg, #15336a 0%, #0e2350 52%, #091a3c 100%);
 }
-/* viola Firenze profondo: sezioni alternate, testo chiaro */
+/* blu Laurenziana profondo: sezioni alternate, testo chiaro */
 .surface-viola {
-  background-color: #2a1140;
+  background-color: #0e2461;
   background-image:
-    radial-gradient(ellipse 85% 75% at 18% -10%, rgba(138, 68, 196, 0.36), transparent 58%),
+    radial-gradient(ellipse 85% 75% at 18% -10%, rgba(63, 116, 240, 0.36), transparent 58%),
     radial-gradient(ellipse 65% 60% at 112% 115%, rgba(227, 195, 114, 0.1), transparent 52%);
 }
 
@@ -164,11 +180,11 @@ html.lenis body {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.85'/></svg>");
 }
 
-/* ---------------- giglio + viola flourishes ---------------- */
+/* ---------------- giglio + blu flourishes ---------------- */
 .glow-viola {
   box-shadow:
-    0 0 24px rgba(138, 68, 196, 0.28),
-    0 0 64px rgba(91, 43, 131, 0.16);
+    0 0 24px rgba(63, 116, 240, 0.28),
+    0 0 64px rgba(28, 67, 201, 0.16);
 }
 .hairline {
   border: 1px solid color-mix(in srgb, var(--color-ink) 14%, transparent);
@@ -269,7 +285,60 @@ html.lenis body {
   animation: marquee 32s linear infinite;
 }
 
-/* link calendario evidenziato: bordo "loader" viola che ruota avvolgendo il
+/* macchina fotografica "Gallery" in nav: flash abbagliante ogni ~6s.
+   Nucleo bianco + alone oro → si vede sia su topbar scura sia chiara. */
+@keyframes camera-flash-burst {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  3% {
+    opacity: 1;
+    transform: scale(0.8);
+  }
+  12% {
+    opacity: 0;
+    transform: scale(2.7);
+  }
+}
+@keyframes camera-flash-pop {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(255, 240, 200, 0));
+  }
+  3% {
+    transform: scale(1.22);
+    filter: drop-shadow(0 0 7px rgba(255, 240, 200, 0.95));
+  }
+  12% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(255, 240, 200, 0));
+  }
+}
+.camera-flash-burst {
+  opacity: 0;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.85) 22%,
+    rgba(227, 195, 114, 0.75) 46%,
+    transparent 72%
+  );
+  animation: camera-flash-burst 6s ease-out infinite;
+}
+.camera-flash-pop {
+  animation: camera-flash-pop 6s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .camera-flash-burst,
+  .camera-flash-pop {
+    animation: none;
+  }
+}
+
+/* link calendario evidenziato: bordo "loader" blu che ruota avvolgendo il
    link. Solo l'anello è visibile (centro trasparente via mask) → funziona
    anche sopra la foto, dove la topbar è trasparente. */
 @property --pulse-angle {
@@ -294,11 +363,11 @@ html.lenis body {
   padding: 1.5px; /* spessore anello */
   background: conic-gradient(
     from var(--pulse-angle),
-    rgba(138, 68, 196, 0.18) 0%,
-    rgba(138, 68, 196, 0.18) 55%,
+    rgba(63, 116, 240, 0.18) 0%,
+    rgba(63, 116, 240, 0.18) 55%,
     var(--color-viola-bright) 80%,
     var(--color-viola) 90%,
-    rgba(138, 68, 196, 0.18) 100%
+    rgba(63, 116, 240, 0.18) 100%
   );
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -311,7 +380,7 @@ html.lenis body {
 @media (prefers-reduced-motion: reduce) {
   .calendar-pulse::before {
     animation: none;
-    background: rgba(138, 68, 196, 0.55);
+    background: rgba(63, 116, 240, 0.55);
   }
 }
 

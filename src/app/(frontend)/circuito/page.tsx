@@ -42,7 +42,7 @@ export default function CircuitoPage() {
       <section className="blueprint-dark text-paper py-20">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
           <Reveal>
-            <div className="text-label text-viola-bright mb-3">In diretta</div>
+            <div className="text-label eyebrow mb-3">In diretta</div>
             <h2 className="text-display text-[clamp(2rem,5vw,3.5rem)] mb-3">
               La pista, ora
             </h2>
@@ -63,7 +63,7 @@ export default function CircuitoPage() {
       <section className="blueprint pb-24 pt-24">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
           <Reveal>
-            <div className="text-label text-viola mb-3">Galleria</div>
+            <div className="text-label eyebrow mb-3">Galleria</div>
             <h2 className="text-display text-[clamp(2rem,5vw,3.5rem)] mb-10">
               Dal vivo
             </h2>
@@ -107,7 +107,7 @@ export default function CircuitoPage() {
       <section className="blueprint-dark text-paper py-24">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
           <Reveal>
-            <div className="text-label text-viola-bright mb-3">Scheda tecnica</div>
+            <div className="text-label eyebrow mb-3">Scheda tecnica</div>
             <h2 className="text-display text-[clamp(2rem,5vw,3.5rem)] mb-12">
               La pista in numeri
             </h2>
@@ -129,7 +129,7 @@ export default function CircuitoPage() {
       <section className="surface-viola text-paper py-24 relative overflow-hidden">
         <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6">
           <Reveal>
-            <div className="text-label text-viola-bright mb-3">Da dove veniamo</div>
+            <div className="text-label eyebrow mb-3">Da dove veniamo</div>
             <h2 className="text-serif text-[clamp(2rem,5vw,3.6rem)] max-w-3xl leading-[1.08] mb-4">
               Quasi mezzo secolo di radiocomandi a{" "}
               <span className="text-serif-italic gold-gradient">Firenze</span>.

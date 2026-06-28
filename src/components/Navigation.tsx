@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/cn";
+import { CameraFlash } from "@/components/CameraFlash";
 
 export function Navigation() {
   const [open, setOpen] = useState(false);
@@ -61,20 +62,41 @@ export function Navigation() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">
-          {site.nav.map((item) =>
-            item.href === "/calendario" ? (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-label relative ml-1 mr-1 inline-flex items-center gap-2 rounded-full bg-gold-bright px-4 py-2 text-asphalt shadow-[0_2px_14px_rgba(227,195,114,0.45)] hover:bg-gold transition-colors"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="ping-soft absolute inline-flex h-full w-full rounded-full bg-kerb" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-kerb" />
-                </span>
-                {item.label}
-              </Link>
-            ) : (
+          {site.nav.map((item) => {
+            if (item.href === "/calendario") {
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-label relative ml-1 mr-1 inline-flex items-center gap-2 rounded-full bg-gold-bright px-4 py-2 text-asphalt shadow-[0_2px_14px_rgba(227,195,114,0.45)] hover:bg-gold transition-colors"
+                >
+                  <span className="relative flex h-2 w-2">
+                    <span className="ping-soft absolute inline-flex h-full w-full rounded-full bg-kerb" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-kerb" />
+                  </span>
+                  {item.label}
+                </Link>
+              );
+            }
+            if (item.href === "/gallery") {
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-label="Gallery"
+                  title="Gallery"
+                  className={cn(
+                    "px-3 py-2 inline-flex items-center transition-colors",
+                    light
+                      ? "text-paper/85 hover:text-paper"
+                      : "text-ink-dim hover:text-ink",
+                  )}
+                >
+                  <CameraFlash />
+                </Link>
+              );
+            }
+            return (
               <Link
                 key={item.href}
                 href={item.href}
@@ -87,8 +109,8 @@ export function Navigation() {
               >
                 {item.label}
               </Link>
-            ),
-          )}
+            );
+          })}
           {/* logo completo: targhetta chiara, leggibile anche sopra l'hero */}
           <div className="hidden lg:flex items-center bg-paper rounded-md px-2 py-0.5 ml-2 shadow-[0_2px_10px_rgba(0,0,0,0.18)]">
             <Image
@@ -142,11 +164,13 @@ export function Navigation() {
           />
           {site.nav.map((item, i) => {
             const isCal = item.href === "/calendario";
+            const isGallery = item.href === "/gallery";
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
+                aria-label={isGallery ? "Gallery" : undefined}
                 className={cn(
                   "w-full py-2 border-b border-ink/10 text-display text-4xl transition-colors flex items-center justify-center gap-3",
                   isCal ? "text-viola" : "hover:text-viola",
@@ -159,7 +183,7 @@ export function Navigation() {
                     <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-kerb" />
                   </span>
                 )}
-                {item.label}
+                {isGallery ? <CameraFlash className="h-9 w-9" /> : item.label}
               </Link>
             );
           })}

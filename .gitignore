@@ -5,6 +5,7 @@
 .DS_Store
 *.pem
 npm-debug.log*
+.env
 .env*.local
 .vercel
 next-env.d.ts
@@ -12,3 +13,6 @@ next-env.d.ts
 
 # dev server log
 .devlog
+
+# upload locali (solo in dev, senza Vercel Blob)
+/media

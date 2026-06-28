@@ -34,7 +34,7 @@ export default function ContattiPage() {
           {/* dove */}
           <Reveal>
             <div className="bg-paper p-8 sm:p-10 h-full">
-              <div className="text-label text-viola mb-4">Dove</div>
+              <div className="text-label eyebrow mb-4">Dove</div>
               <address className="not-italic">
                 <div className="text-display text-2xl sm:text-3xl leading-tight">
                   {site.address.street}
@@ -57,7 +57,7 @@ export default function ContattiPage() {
           {/* contatti */}
           <Reveal delay={0.06}>
             <div className="bg-paper p-8 sm:p-10 h-full">
-              <div className="text-label text-viola mb-4">Contatti</div>
+              <div className="text-label eyebrow mb-4">Contatti</div>
               <a
                 href={`mailto:${site.contacts.email}`}
                 className="text-display text-xl sm:text-2xl break-all hover:text-viola transition-colors"
@@ -92,10 +92,10 @@ export default function ContattiPage() {
 
       {/* iscrizione / pagamenti */}
       <section className="blueprint-dark text-paper py-24 relative overflow-hidden">
-        <GiglioMark className="pointer-events-none absolute -right-16 top-1/2 -translate-y-1/2 h-[120%] w-auto text-viola/[0.05]" />
+        <GiglioMark className="pointer-events-none absolute -right-16 top-1/2 -translate-y-1/2 h-[120%] w-auto text-kerb/[0.05]" />
         <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6">
           <Reveal>
-            <div className="text-label text-viola-bright mb-3">Iscrizioni</div>
+            <div className="text-label eyebrow mb-3">Iscrizioni</div>
             <h2 className="text-display text-[clamp(2rem,5vw,3.5rem)] mb-12 max-w-3xl">
               Tre passi per partire
             </h2>

@@ -15,8 +15,8 @@ export function PageHero({
         <GiglioMark gradient className="h-full w-auto opacity-[0.12]" />
       </div>
       <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6">
-        <div className="fade flex items-center gap-3 text-label text-gold">
-          <span className="h-px w-10 bg-[linear-gradient(90deg,var(--color-gold),transparent)]" />
+        <div className="fade flex items-center gap-3 text-label eyebrow">
+          <span className="h-px w-10 bg-[linear-gradient(90deg,currentColor,transparent)]" />
           {kicker}
         </div>
         <h1 className="rise text-serif mt-5 text-[clamp(2.6rem,7.5vw,5.5rem)] leading-[0.98]">

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
-import { TracciatiBanner } from "@/components/TracciatiBanner";
+import { SlideMagazine } from "@/components/SlideMagazine";
 import { GiglioMark } from "@/components/GiglioMark";
 import { site } from "@/lib/site";
 
@@ -85,7 +85,7 @@ export function Hero() {
         </dl>
       </div>
 
-      <TracciatiBanner />
+      <SlideMagazine />
     </section>
   );
 }

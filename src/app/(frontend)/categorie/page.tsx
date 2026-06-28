@@ -50,7 +50,7 @@ export default function CategoriePage() {
                   </p>
 
                   <div className="mt-6 space-y-2.5">
-                    <div className="text-label text-viola">Svolgimento gara</div>
+                    <div className="text-label eyebrow">Svolgimento gara</div>
                     <p className="text-sm text-ink-dim leading-relaxed">
                       <span className="text-ink font-medium">Qualifiche.</span>{" "}
                       {c.format.qualifiche}
@@ -95,7 +95,7 @@ export default function CategoriePage() {
       >
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
           <Reveal>
-            <div className="text-label text-gold-bright mb-3">
+            <div className="text-label eyebrow mb-3">
               Regolamento esteso
             </div>
             <h2 className="text-serif text-[clamp(2.2rem,6vw,4rem)]">
@@ -113,13 +113,13 @@ export default function CategoriePage() {
           <Reveal>
             <div className="mt-12 grid sm:grid-cols-2 gap-px bg-paper/10 hairline-dark">
               <div className="bg-asphalt p-7">
-                <div className="text-label text-viola-bright mb-2">Qualifiche</div>
+                <div className="text-label eyebrow mb-2">Qualifiche</div>
                 <p className="text-paper/70 text-sm leading-relaxed">
                   {f1Championship.format.qualifiche}
                 </p>
               </div>
               <div className="bg-asphalt p-7">
-                <div className="text-label text-viola-bright mb-2">Finali</div>
+                <div className="text-label eyebrow mb-2">Finali</div>
                 <p className="text-paper/70 text-sm leading-relaxed">
                   {f1Championship.format.finali}
                 </p>
@@ -130,13 +130,13 @@ export default function CategoriePage() {
           {/* regolamento tecnico esteso */}
           <Reveal>
             <div className="mt-12">
-              <div className="text-label text-viola-bright mb-4">
+              <div className="text-label eyebrow mb-4">
                 Regolamento tecnico
               </div>
-              <dl className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-paper/10 hairline-dark">
+              <dl className="grid sm:grid-cols-2 gap-px bg-paper/10 hairline-dark">
                 {Object.entries(f1Championship.tech).map(([k, v]) => (
                   <div key={k} className="bg-asphalt p-5">
-                    <dt className="text-label text-ink-faint">{k}</dt>
+                    <dt className="text-label text-paper/55">{k}</dt>
                     <dd className="text-sm mt-1.5 text-paper/85 leading-relaxed">
                       {v}
                     </dd>
@@ -150,7 +150,7 @@ export default function CategoriePage() {
           <Reveal>
             <div className="mt-12 grid lg:grid-cols-[1.3fr_1fr] gap-px bg-paper/10 hairline-dark">
               <div className="bg-asphalt p-7">
-                <div className="text-label text-viola-bright mb-3">
+                <div className="text-label eyebrow mb-3">
                   Piloti e team
                 </div>
                 <p className="text-paper/70 text-sm leading-relaxed">
@@ -158,7 +158,7 @@ export default function CategoriePage() {
                 </p>
               </div>
               <div className="bg-asphalt p-7">
-                <div className="text-label text-viola-bright mb-3">
+                <div className="text-label eyebrow mb-3">
                   Punteggi a gara
                 </div>
                 <div className="grid grid-cols-3 sm:grid-cols-4 gap-x-4 gap-y-1.5">
@@ -167,7 +167,7 @@ export default function CategoriePage() {
                       key={pos}
                       className="flex items-baseline justify-between gap-2 tabular-nums"
                     >
-                      <span className="text-mono text-xs text-ink-faint">
+                      <span className="text-mono text-xs text-paper/55">
                         {pos}
                       </span>
                       <span className="text-sm text-paper/85">{pt}</span>
@@ -191,7 +191,7 @@ export default function CategoriePage() {
                 { t: "Giornata tipo", d: f1Championship.timetable },
               ].map((b) => (
                 <div key={b.t} className="bg-asphalt p-6">
-                  <div className="text-label text-viola-bright mb-2">{b.t}</div>
+                  <div className="text-label eyebrow mb-2">{b.t}</div>
                   <p className="text-paper/65 text-sm leading-relaxed">{b.d}</p>
                 </div>
               ))}

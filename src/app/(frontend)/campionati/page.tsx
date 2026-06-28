@@ -78,7 +78,7 @@ export default function CampionatiPage() {
       <section className="blueprint-dark text-paper py-24">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
           <Reveal>
-            <div className="text-label text-viola-bright mb-3">Come si corre</div>
+            <div className="text-label eyebrow mb-3">Come si corre</div>
             <h2 className="text-display text-[clamp(2rem,5vw,3.5rem)] mb-12">
               La giornata di gara
             </h2>

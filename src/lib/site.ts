@@ -1,7 +1,7 @@
 export const site = {
   name: "A.S.D. Laurenziana Model Team",
   fullName: "A.S.D. Laurenziana Model Team Firenze",
-  section: "Sezione Automodellismo RC",
+  section: "Automodellismo RC",
   track: "Pista Permanente di Firenze",
   domain: "asdlaurenziana.it",
   tagline: "Automodellismo RC su asfalto. A Firenze, da sempre.",
@@ -25,6 +25,7 @@ export const site = {
     { label: "Categorie", href: "/categorie" },
     { label: "Calendario", href: "/calendario" },
     { label: "Campionati", href: "/campionati" },
+    { label: "Gallery", href: "/gallery" },
     { label: "Contatti", href: "/contatti" },
   ],
   social: {
